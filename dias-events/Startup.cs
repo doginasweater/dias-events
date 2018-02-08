@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using dias_events.Data;
 using dias_events.Models;
 using dias_events.Services;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 
 namespace dias_events
 {
@@ -47,6 +48,10 @@ namespace dias_events
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+                    HotModuleReplacement = true,
+                    ReactHotModuleReplacement = true
+                });
             }
             else
             {
@@ -62,6 +67,10 @@ namespace dias_events
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                
+                routes.MapSpaFallbackRoute(
+                     name: "spa-fallback",
+                     defaults: new { controller = "Home", action = "Index" });
             });
         }
     }
