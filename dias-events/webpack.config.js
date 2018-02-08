@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const path = require('path');
 
@@ -40,6 +41,9 @@ module.exports = env => {
         },
         devtool: 'inline-source-map',
         plugins: [
+            new WebpackShellPlugin({
+                onBuildStart: ['yarn run csharp-models-to-typescript --config=tstranslate.json']
+            }),
             new CheckerPlugin(),
             /*new webpack.DllReferencePlugin({
                 context: __dirname,

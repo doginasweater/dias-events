@@ -1,0 +1,8 @@
+{
+    "include": [
+        "./Models/DTOs/**/*.cs"
+    ],
+    "namespace": "Api",
+    "output": "./src/api/api.d.ts",
+    "camelCase": false
+}

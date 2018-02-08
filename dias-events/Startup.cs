@@ -28,7 +28,7 @@ namespace dias_events
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("users")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -62,15 +62,14 @@ namespace dias_events
 
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-                
+            app.UseMvc(routes => {
                 routes.MapSpaFallbackRoute(
-                     name: "spa-fallback",
-                     defaults: new { controller = "Home", action = "Index" });
+                    name: "spa-fallback",
+                    defaults: new {
+                        controller = "Home",
+                        action = "Index"
+                    }
+                );
             });
         }
     }
