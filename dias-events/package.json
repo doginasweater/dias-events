@@ -1,0 +1,22 @@
+{
+  "name": "dias-events",
+  "version": "1.0.0",
+  "main": "dist/bundle.js",
+  "author": "Kevin Bernfeld <kcbernfeld@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "css-loader": "^0.28.9",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.1",
+    "tslint": "^5.9.1",
+    "tslint-react": "^3.4.0",
+    "typescript": "^2.7.1",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-router-dom": "^4.2.2"
+  }
+}
