@@ -12,7 +12,6 @@ namespace dias.events.Data.Platform {
 
         public decimal value { get; set; }
         
-        public Question question { get; set; }
-        public long? questionid { get; set; }
+        public ICollection<Question> questions { get; set; } = new List<Question>();
     }
 }

@@ -2,11 +2,6 @@
 
 namespace dias.events.Data.Platform {
     public class Question : Common {
-        public Question() {
-            answers = new HashSet<Answer>();
-            dependencies = new HashSet<Dependency>();
-        }
-
         public string text { get; set; }
         public bool required { get; set; }
         public AnswerType type { get; set; }
@@ -27,7 +22,7 @@ namespace dias.events.Data.Platform {
         public Location location { get; set; }
         public long? locationid { get; set; }
 
-        public ICollection<Dependency> dependencies { get; set; }
-        public ICollection<Answer> answers { get; set; }
+        public ICollection<Dependency> dependencies { get; set; } = new List<Dependency>();
+        public ICollection<Answer> answers { get; set; } = new List<Answer>();
     }
 }

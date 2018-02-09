@@ -2,8 +2,6 @@
 
 namespace dias.events.Data.Platform {
     public class Answer : Common {
-        public Answer() => selections = new HashSet<ChoiceAnswer>();
-
         public Question question { get; set; }
         public int sortorder { get; set; }
         
@@ -14,6 +12,6 @@ namespace dias.events.Data.Platform {
         public Price price { get; set; }
         public long? priceid { get; set; }
 
-        public ICollection<ChoiceAnswer> selections { get; set; }
+        public ICollection<ChoiceAnswer> selections { get; set; } = new List<ChoiceAnswer>();
     }
 }

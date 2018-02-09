@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dias.events.Models.DTOs;
 
 namespace dias.events.Data.Platform {
     public class FormEntry : Common {
@@ -9,6 +10,7 @@ namespace dias.events.Data.Platform {
         public long eventid { get; set; }
 
         public EntryType type { get; set; }
+        public EntryState defaultstate { get; set; }
         public int page { get; set; }
         public int sortorder { get; set; }
 

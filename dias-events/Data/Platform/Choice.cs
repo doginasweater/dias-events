@@ -2,8 +2,6 @@
 
 namespace dias.events.Data.Platform {
     public class Choice : Common {
-        public Choice() => selections = new HashSet<ChoiceAnswer>();
-
         public long submissionid { get; set; }
         public Submission submission { get; set; }
 
@@ -16,7 +14,7 @@ namespace dias.events.Data.Platform {
         public string text { get; set; }
         
         // checkboxes
-        public ICollection<ChoiceAnswer> selections { get; set; }
+        public ICollection<ChoiceAnswer> selections { get; set; } = new List<ChoiceAnswer>();
         
         // select boxes, radio buttons
         public Answer answer { get; set; }

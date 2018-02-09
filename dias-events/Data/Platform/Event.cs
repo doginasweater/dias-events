@@ -5,12 +5,6 @@ using System.Threading.Tasks;
 
 namespace dias.events.Data.Platform {
     public class Event : Common {
-        public Event() {
-            formentries = new HashSet<FormEntry>();
-            questions = new HashSet<Question>();
-            responses = new HashSet<Submission>();
-        }
-
         public string name { get; set; }
         public string title { get; set; }
         public bool active { get; set; }
@@ -27,8 +21,8 @@ namespace dias.events.Data.Platform {
         public long organisationid { get; set; }
         public Organisation organisation { get; set; }
 
-        public ICollection<FormEntry> formentries { get; set; }
-        public ICollection<Question> questions { get; set; }
-        public ICollection<Submission> responses { get; set; }
+        public ICollection<FormEntry> formentries { get; set; } = new List<FormEntry>();
+        public ICollection<Question> questions { get; set; } = new List<Question>();
+        public ICollection<Submission> responses { get; set; } = new List<Submission>();
     }
 }
