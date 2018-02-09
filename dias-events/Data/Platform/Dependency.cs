@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace dias.events.Data.Platform {
-    public class Dependency {
+    public class Dependency : Common {
         public Question question { get; set; }
         public long questionid { get; set; }
 

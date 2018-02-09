@@ -12,6 +12,7 @@ using dias_events.Data;
 using dias_events.Models;
 using dias_events.Services;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using dias.events.Data;
 
 namespace dias_events
 {
@@ -29,6 +30,9 @@ namespace dias_events
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("users")));
+
+            services.AddDbContext<DiasContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("main")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()

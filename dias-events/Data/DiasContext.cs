@@ -23,6 +23,11 @@ namespace dias.events.Data {
         public DbSet<Submission> Submissions { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder) {
+            builder.Entity<ChoiceAnswer>()
+                .HasKey(x => new { x.answerid, x.choiceid });
+        }
+
         public string user { get; set; } = "anonymous";
 
         public override int SaveChanges() {
