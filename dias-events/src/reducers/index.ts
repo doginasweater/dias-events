@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
-export const rootReducer = combineReducers({
+const fakeReducer = (state: any = {}, action: any): any => state;
 
+export const rootReducer = combineReducers({
+    fakeReducer
 });

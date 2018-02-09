@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = (env) => {
-    return [{
+    return {
         stats: { modules: false },
         resolve: {
             extensions: ['.js']
@@ -38,5 +38,5 @@ module.exports = (env) => {
                 name: '[name]_[hash]'
             })
         ]
-    }];
+    };
 };

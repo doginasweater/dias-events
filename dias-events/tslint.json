@@ -35,7 +35,7 @@
             "array"
         ],
         "no-trailing-whitespace": true,
-        "ordered-imports": true,
+        "ordered-imports": false,
         "prefer-template": true,
         "quotemark": [
             true,
@@ -60,7 +60,8 @@
         "jsx-no-lambda": false,
         "jsx-boolean-value": false,
         "no-console": false,
-        "jsx-wrap-multiline": false
+        "jsx-wrap-multiline": false,
+        "object-literal-sort-keys": false
     },
     "rulesDirectory": []
 }
