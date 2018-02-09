@@ -62,9 +62,27 @@
   dependencies:
     redux "*"
 
+"@types/tapable@*":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-0.2.4.tgz#8181a228da46185439300e600c5ae3b3b3982585"
+
+"@types/uglify-js@*":
+  version "2.6.30"
+  resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-2.6.30.tgz#257d2b6dd86673d60da476680fba90f2e30c6eef"
+  dependencies:
+    source-map "^0.6.1"
+
 "@types/webpack-env@^1.13.5":
   version "1.13.5"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.5.tgz#ca854e9fbdbcdf45d7376882875f28e2c60593f8"
+
+"@types/webpack@^3.8.5":
+  version "3.8.5"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/@types/webpack-3.8.5.tgz#793a0dc6c49900095313c4f424eda6fb814dd76b"
+  dependencies:
+    "@types/node" "*"
+    "@types/tapable" "*"
+    "@types/uglify-js" "*"
 
 abbrev@1:
   version "1.1.1"
@@ -1319,6 +1337,13 @@ fbjs@^0.8.16:
     promise "^7.1.1"
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
+
+file-loader@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-1.1.6.tgz#7b9a8f2c58f00a77fddf49e940f7ac978a3ea0e8"
+  dependencies:
+    loader-utils "^1.0.2"
+    schema-utils "^0.3.0"
 
 filename-regex@^2.0.0:
   version "2.0.1"
@@ -3585,6 +3610,12 @@ sax@~1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
+schema-utils@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
+  dependencies:
+    ajv "^5.0.0"
+
 schema-utils@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.4.3.tgz#e2a594d3395834d5e15da22b48be13517859458e"
@@ -4248,6 +4279,12 @@ webpack-hot-middleware@^2.21.0:
     html-entities "^1.2.0"
     querystring "^0.2.0"
     strip-ansi "^3.0.0"
+
+webpack-merge@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-4.1.1.tgz#f1197a0a973e69c6fbeeb6d658219aa8c0c13555"
+  dependencies:
+    lodash "^4.17.4"
 
 webpack-node-externals@^1.4.3:
   version "1.6.0"

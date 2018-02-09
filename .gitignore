@@ -262,4 +262,6 @@ __pycache__/
 
 .vscode
 
-**/wwwroot/js/*.js
+**/wwwroot/**/*.js
+**/wwwroot/**/*.css
+**/wwwroot/**/*.map

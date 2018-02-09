@@ -14,16 +14,16 @@ module.exports = (env) => {
         },
         entry: {
             vendor: [
-                'whatwg-fetch',
+                'moment',
                 'react',
                 'react-dom',
                 'react-redux',
                 'react-router-dom',
-                'react-markdown',
                 'redux',
-                'redux-devtools-extension',
+                'redux-form',
                 'redux-observable',
-                'rxjs'
+                'rxjs',
+                'whatwg-fetch'
             ],
         },
         output: {

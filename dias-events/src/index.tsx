@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import 'styles/main.scss';
 import { store } from './store';
 
 ReactDOM.render(

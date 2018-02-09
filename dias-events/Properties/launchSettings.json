@@ -20,7 +20,8 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "TS_NODE_PROJECT": "tsconfig-for-webpack.json"
       },
       "applicationUrl": "http://localhost:50874/"
     }
