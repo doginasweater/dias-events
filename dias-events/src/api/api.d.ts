@@ -32,9 +32,4 @@ declare module Api {
         'Submit' |
         'Payment';
     
-    // Models\DTOs\thing.cs
-    export interface thing {
-        name: string;
-    }
-
 }
