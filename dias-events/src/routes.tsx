@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Link, Route } from 'react-router-dom';
+import Button from 'material-ui/Button';
 
 export const Routes =
     <div className="main pure-g">
@@ -10,6 +11,9 @@ export const Routes =
 
         <div className="pure-u-1">
             routes collection
+            <Button variant="raised" color="primary">
+                Hello!
+            </Button>
         </div>
 
         <footer className="pure-u-1">

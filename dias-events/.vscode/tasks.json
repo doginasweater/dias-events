@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "lint",
+            "script": "lint",
+            "problemMatcher": {
+                "base": "$tslint5",
+                "fileLocation": "relative"
+            }
+        }
+    ]
+}
