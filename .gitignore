@@ -260,8 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 
-.vscode
-
 **/wwwroot/**/*.js
 **/wwwroot/**/*.css
 **/wwwroot/**/*.map
