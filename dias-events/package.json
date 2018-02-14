@@ -1,6 +1,6 @@
 {
   "name": "dias-events",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "main": "dist/bundle.js",
   "author": "Kevin Bernfeld <kcbernfeld@gmail.com>",
   "license": "MIT",
