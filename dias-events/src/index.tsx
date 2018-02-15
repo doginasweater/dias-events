@@ -5,6 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { store } from './store';
+
 import 'styles/main.scss';
 
 let routes = RoutesModule.Routes;

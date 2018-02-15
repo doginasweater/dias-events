@@ -14,7 +14,6 @@ module.exports = (env) => {
         },
         entry: {
             vendor: [
-                'material-ui',
                 'moment',
                 'react',
                 'react-dom',
