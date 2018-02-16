@@ -5,7 +5,5 @@ import { Link, Route } from 'react-router-dom';
 import { Home } from 'components/public';
 
 export const Routes = (
-    <div className="pure-g">
         <Route exact path="/" component={Home} />
-    </div>
 );
