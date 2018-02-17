@@ -19,7 +19,7 @@ const styles = (theme: Theme) => ({
         marginRight: 20
     },
     toolbar: {
-        minHeight: '10vh'
+        minHeight: '8vh'
     }
 });
 
@@ -31,8 +31,6 @@ class HeaderClass extends React.Component<HeaderStyles, any> {
     }
 
     public render() {
-        console.log('props', this.props);
-
         const { classes } = this.props;
 
         return (
@@ -47,7 +45,7 @@ class HeaderClass extends React.Component<HeaderStyles, any> {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="title" color="inherit" className={classes.flex}>
-                            Title
+                            Admin
                         </Typography>
                         <Button color="inherit">Login</Button>
                     </Toolbar>

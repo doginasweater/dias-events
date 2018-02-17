@@ -2,8 +2,8 @@ import * as React from 'react';
 import { withStyles, WithStyles, Theme } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
-import InboxIcon from 'material-ui-icons/Inbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
+import New from 'material-ui-icons/Add';
+import Home from 'material-ui-icons/Home';
 
 const styles = (theme: Theme) => ({
     root: {
@@ -28,24 +28,19 @@ class LeftMenuClass extends React.Component<WithStyles<'root'>, any> {
                 <List component="nav">
                     <ListItem button>
                         <ListItemIcon>
-                            <InboxIcon />
+                            <Home />
                         </ListItemIcon>
-                        <ListItemText primary="Inbox" />
+                        <ListItemText primary="Home" />
+                    </ListItem>
+                    <Divider />
+                    <ListItem button>
+                        <ListItemText primary="Events" />
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
-                            <DraftsIcon />
+                            <New />
                         </ListItemIcon>
-                        <ListItemText primary="Drafts" />
-                    </ListItem>
-                </List>
-                <Divider />
-                <List component="nav">
-                    <ListItem button>
-                        <ListItemText primary="Trash" />
-                    </ListItem>
-                    <ListItem button component="a" href="#simple-list">
-                        <ListItemText primary="Spam" />
+                        <ListItemText primary="New Event" />
                     </ListItem>
                 </List>
             </div>

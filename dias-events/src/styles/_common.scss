@@ -29,6 +29,7 @@ body {
   grid-area: header;
   z-index: 3;
   box-shadow: 0px 2px 2px #acacac;
+  min-height: 8vh;
 }
 
 .left-menu {
@@ -40,14 +41,13 @@ body {
 
 .main-content {
   grid-area: main-content;
-  padding: 20px;
-  min-height: 90vh;
+  padding: 10px;
+  min-height: 92vh;
   box-sizing: border-box;
 }
 
 .footer {
   grid-area: footer;
-  background-color: #fff;
   text-align: right;
   font-size: .7em;
   padding: 5px;
@@ -60,6 +60,4 @@ body {
 
 .flex-item {
   flex: 1;
-  background-color: #fff;
-  padding: 10px;
 }
