@@ -47,7 +47,8 @@ module.exports = (env) => {
                 components: path.resolve(__dirname, 'src/components/'),
                 constants: path.resolve(__dirname, 'src/constants/'),
                 reducers: path.resolve(__dirname, 'src/reducers/'),
-                styles: path.resolve(__dirname, 'src/styles')
+                styles: path.resolve(__dirname, 'src/styles'),
+                utilities: path.resolve(__dirname, 'src/utilities')
             }
         },
         stats: { modules: false },

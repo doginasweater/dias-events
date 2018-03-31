@@ -1,10 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Grid } from 'components/common';
+import { ScbwiForm } from './form';
 
 class StaticInternal extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
+    }
+
+    public handleSubmit = (values: any) => {
+        console.log('values', values);
     }
 
     public render() {
@@ -22,7 +27,7 @@ class StaticInternal extends React.Component<any, any> {
                     </Grid.PureU14>
                     <Grid.PureU34>
                         <h3>Register</h3>
-                        the rest
+                        <ScbwiForm onSubmit={this.handleSubmit} />
                     </Grid.PureU34>
                 </Grid.PureU1>
             </Grid.PureG>
