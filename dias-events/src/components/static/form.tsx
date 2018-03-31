@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { PureControlGroup, PureControlYesNo, PureRadioGroup } from 'components/common/grid';
+import { required, mustBeMember } from 'utilities/validators';
 
 const ScbwiFormInternal = (props: any) => {
     console.log('props', props);
@@ -11,7 +12,7 @@ const ScbwiFormInternal = (props: any) => {
             value: 'picture-book'
         },
         {
-            label: 'Middle Grade: Presented by Erin Entrada Kelly and TBA',
+            label: 'Middle Grade: Presented by Erin Entrada Kelly and Tricia Lin',
             value: 'middle-grade'
         },
         {
@@ -83,6 +84,7 @@ const ScbwiFormInternal = (props: any) => {
 
                 <PureControlGroup htmlFor="firstname" label="First Name" />
                 <PureControlGroup htmlFor="lastname" label="Last Name" />
+                <PureControlGroup htmlFor="badgename" label="Badge Name" message="If different from your regular name" />
                 <PureControlGroup htmlFor="address1" label="Address 1" />
                 <PureControlGroup htmlFor="address2" label="Address 2" />
                 <PureControlGroup htmlFor="city" label="City" />
@@ -113,6 +115,26 @@ const ScbwiFormInternal = (props: any) => {
             <fieldset>
                 <legend>Portfolio Critiques (Optional, $60 each)</legend>
                 <PureRadioGroup groupLabel="Please select how many critiques you would like (if any)" groupName="portfoliocritiques" values={critiques} />
+                <p>
+                    Please remember to request your reviews from <a href="mailto:submissions@scbwiflorida.com">submissions@scbwiflorida.com</a> once you
+                    have completed your registration.
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend>Coupon</legend>
+                <PureControlGroup htmlFor="coupon" label="Coupon Code" message="If applicable" />
+                <div className="pure-controls">
+                    <button className="pure-button pure-button-primary" type="button">Submit Coupon</button>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Totals</legend>
+                <p>
+                    Please note that all registrations are <b>final</b>. There will be <b>no refunds given</b>.
+                </p>
+                <p>
+                    Your total is $total
+                </p>
             </fieldset>
             <fieldset>
                 <legend><b>Important</b>: SCBWI's Anti-Harassment Policy</legend>

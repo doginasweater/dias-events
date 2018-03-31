@@ -17,6 +17,19 @@ body {
   margin: 0;
 }
 
+legend {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:visited {
+  color: blue;
+}
+
 .grid-wrapper {
   display: grid;
   grid-template-columns: 1fr 4fr;
@@ -63,6 +76,6 @@ body {
 }
 
 .unstyled-link {
-  color: #000;
+  color: #000 !important;
   text-decoration: none;
 }

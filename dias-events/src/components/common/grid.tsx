@@ -22,14 +22,16 @@ export const PureU34 = makeComponent('pure-u-3-4');
 
 type ControlGroupProps = {
     htmlFor: string;
-    type?: string;
     label: string;
+    type?: string;
+    message?: string;
 };
 
-export const PureControlGroup = ({ htmlFor, type = 'text', label }: ControlGroupProps) => (
+export const PureControlGroup = ({ htmlFor, type = 'text', label, message }: ControlGroupProps) => (
     <div className="pure-control-group">
         <label htmlFor={htmlFor}>{label}</label>
         <Field name={htmlFor} component="input" type={type} />
+        <span className="pure-form-message-inline">{message}</span>
     </div>
 );
 
@@ -56,7 +58,7 @@ export const PureRadioGroup = ({ groupName, groupLabel, values, newLine = true }
 
     return (
         <>
-            <div>{groupLabel}</div>
+            <p>{groupLabel}</p>
             {buttons}
         </>
     );
@@ -69,7 +71,7 @@ type PureControlYesNo = {
 
 export const PureControlYesNo = ({ htmlFor, label }: PureControlYesNo) => (
     <div className="pure-control-group">
-        <div>{label}</div>
+        <p>{label}</p>
         <PureU12>
             <PureU12>
                 <label>

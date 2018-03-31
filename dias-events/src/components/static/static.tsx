@@ -22,11 +22,22 @@ class StaticInternal extends React.Component<any, any> {
                 </Grid.PureU1>
                 <Grid.PureU1>
                     <Grid.PureU14>
-                        <h3>Navigation</h3>
-                        left menu
+                        <h2>Navigation</h2>
+                        <ul>
+                            <li>
+                                <a href="https://www.scbwi.org/" target="_blank">
+                                    SCBWI
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://florida.scbwi.org/" target="_blank">
+                                    Florida SCBWI
+                                </a>
+                            </li>
+                        </ul>
                     </Grid.PureU14>
                     <Grid.PureU34>
-                        <h3>Register</h3>
+                        <h2>Register</h2>
                         <ScbwiForm onSubmit={this.handleSubmit} />
                     </Grid.PureU34>
                 </Grid.PureU1>
