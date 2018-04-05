@@ -1,0 +1,173 @@
+import axios from 'axios';
+
+interface IRegistrationForm {
+    member: 'yes' | 'no';
+    firstname: string;
+    lastname: string;
+    badgename: string;
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    postalcode: string;
+    country: string;
+    email: string;
+    phone: string;
+    workshops: string;
+    intensives: string;
+    manuscriptcritiques: string;
+    portfoliocritiques: string;
+    coupon: string;
+}
+
+interface IStatic {
+    env: string;
+    sandbox: string;
+    production: string;
+    reg: IRegistrationForm;
+    agreed: boolean;
+    subtotal: number;
+    total: number;
+    loading: boolean;
+    member: boolean;
+}
+
+const initial: IStatic = {
+    env: 'sandbox',
+    sandbox: '',
+    production: '',
+    reg: {
+        member: 'no',
+        firstname: '',
+        lastname: '',
+        badgename: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: 'FL',
+        postalcode: '',
+        country: 'US',
+        email: '',
+        phone: '',
+        workshops: '',
+        intensives: '',
+        manuscriptcritiques: '0',
+        portfoliocritiques: '0',
+        coupon: '',
+    },
+    agreed: false,
+    subtotal: 0.0,
+    total: 0.0,
+    loading: false,
+    member: false
+};
+
+const CHECKAGREE = 'CHECKAGREE';
+const GETTOKEN = 'GETTOKEN';
+const SETMEMBER = 'SETMEMBER';
+const SETTOKEN = 'SETTOKEN';
+const SETTOTAL = 'SETTOTAL';
+const SUBMITCOUPON = 'SUBMITCOUPON';
+
+const calc = (dispatch: any, store: any) => {
+    const { values } = store().form.scbwi;
+    const toSubmit = {
+        member: values.member === 'yes',
+        intensives: values.intensives,
+        workshops: values.workshops,
+        manuscriptcritiques: Number(values.manuscriptcritiques),
+        portfoliocritiques: Number(values.portfoliocritiques),
+        coupon: values.coupon
+    };
+
+    axios.post('/api/calctotal', toSubmit)
+        .then(response => {
+            if (response.status !== 200) {
+                console.error(`Error! ${response.statusText}`);
+                return;
+            }
+
+            dispatch(setTotal(response.data.subtotal, response.data.total));
+        });
+};
+
+export const checkAgree = (val: string) =>
+    (dispatch: any, store: any) => {
+        const agree = val === '' || val === 'false';
+
+        dispatch({ type: CHECKAGREE, agree });
+
+        if (agree) {
+            calc(dispatch, store);
+        }
+    };
+
+export const setMember = () =>
+    (dispatch: any, store: any) => {
+        const { member } = store().form.scbwi.values;
+
+        dispatch({ type: SETMEMBER, isMember: member !== 'yes' });
+    };
+
+export const submitCoupon = () =>
+    (dispatch: any, store: any) => {
+        const { coupon } = store().form.scbwi.values;
+
+        if (coupon) {
+            dispatch({ type: SUBMITCOUPON });
+            calc(dispatch, store);
+        }
+    };
+
+export const setTotal = (subtotal: number, total: number) => ({ type: SETTOTAL, subtotal, total });
+export const setToken = (env: string, sandbox: string, production: string) => ({ type: SETTOKEN, env, sandbox, production });
+export const getToken = () =>
+    (dispatch: any) => {
+        axios
+            .post('/api/token')
+            .then((response) => {
+                if (response.status !== 200) {
+                    console.error(`Error! ${response.statusText}`);
+                    return;
+                }
+
+                dispatch(setToken(response.data.env, response.data.sandbox, response.data.production));
+            });
+    };
+
+export const staticReducer = (state: IStatic = initial, action: any) => {
+    switch (action.type) {
+        case CHECKAGREE:
+            return {
+                ...state,
+                agreed: action.agree,
+                loading: true
+            };
+        case SETMEMBER:
+            return {
+                ...state,
+                member: action.isMember
+            };
+        case SETTOKEN:
+            return {
+                ...state,
+                env: action.env,
+                sandbox: action.sandbox,
+                production: action.production
+            };
+        case SETTOTAL:
+            return {
+                ...state,
+                total: action.total,
+                subtotal: action.subtotal,
+                loading: false
+            };
+        case SUBMITCOUPON:
+            return {
+                ...state,
+                loading: true
+            };
+        default:
+            return state;
+    }
+};

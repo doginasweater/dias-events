@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
-
-const fakeReducer = (state: any = {}, action: any): any => state;
+import { staticReducer } from 'components/static/staticredux';
 
 export const rootReducer = combineReducers({
-    fakeReducer,
-    form
+    form,
+    staticReducer
 });

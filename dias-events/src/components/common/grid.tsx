@@ -67,20 +67,21 @@ export const PureRadioGroup = ({ groupName, groupLabel, values, newLine = true }
 type PureControlYesNo = {
     htmlFor: string;
     label: string;
+    handleChange: (event?: React.ChangeEvent<any>) => void;
 };
 
-export const PureControlYesNo = ({ htmlFor, label }: PureControlYesNo) => (
+export const PureControlYesNo = ({ htmlFor, label, handleChange }: PureControlYesNo) => (
     <div className="pure-control-group">
         <p>{label}</p>
         <PureU12>
             <PureU12>
                 <label>
-                    <Field name={htmlFor} component="input" type="radio" value="yes" /> Yes
+                    <Field name={htmlFor} component="input" type="radio" value="yes" onChange={handleChange} /> Yes
                 </label>
             </PureU12>
             <PureU12>
                 <label>
-                    <Field name={htmlFor} component="input" type="radio" value="no" /> No
+                    <Field name={htmlFor} component="input" type="radio" value="no" onChange={handleChange} /> No
                 </label>
             </PureU12>
         </PureU12>

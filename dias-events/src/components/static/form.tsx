@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { PureControlGroup, PureControlYesNo, PureRadioGroup } from 'components/common/grid';
 import { required, mustBeMember } from 'utilities/validators';
+import { checkAgree, setMember, submitCoupon } from './staticredux';
+import { PayPal } from './paypal';
 
 const ScbwiFormInternal = (props: any) => {
-    console.log('props', props);
-
     const workshops = [
         {
             label: 'Picture Book: Presented by Marla Frazee, Liz Garton Scanlon, Kait Feldmann, and Nancy Brennan',
@@ -77,7 +78,7 @@ const ScbwiFormInternal = (props: any) => {
         <form onSubmit={handleSubmit} className="pure-form pure-form-aligned">
             <fieldset>
                 <legend>Membership (Required)</legend>
-                <PureControlYesNo htmlFor="member" label="Are you a member?" />
+                <PureControlYesNo htmlFor="member" label="Are you a member?" handleChange={props.setMember} />
             </fieldset>
             <fieldset>
                 <legend>Basic Info (Required)</legend>
@@ -101,11 +102,11 @@ const ScbwiFormInternal = (props: any) => {
                 <PureControlGroup htmlFor="phone" label="Phone" />
             </fieldset>
             <fieldset>
-                <legend>Workshops (Required)</legend>
+                <legend>Workshops (Required, ${props.member ? '250' : '280'})</legend>
                 <PureRadioGroup groupName="workshops" groupLabel="Please select a workshop" values={workshops} />
             </fieldset>
             <fieldset>
-                <legend>Intensives (Optional, Members Only)</legend>
+                <legend>Intensives (Optional, Members Only, $250)</legend>
                 <PureRadioGroup groupName="intensives" groupLabel="Select an intensive" values={intensives} />
             </fieldset>
             <fieldset>
@@ -121,22 +122,6 @@ const ScbwiFormInternal = (props: any) => {
                 </p>
             </fieldset>
             <fieldset>
-                <legend>Coupon</legend>
-                <PureControlGroup htmlFor="coupon" label="Coupon Code" message="If applicable" />
-                <div className="pure-controls">
-                    <button className="pure-button pure-button-primary" type="button">Submit Coupon</button>
-                </div>
-            </fieldset>
-            <fieldset>
-                <legend>Totals</legend>
-                <p>
-                    Please note that all registrations are <b>final</b>. There will be <b>no refunds given</b>.
-                </p>
-                <p>
-                    Your total is $total
-                </p>
-            </fieldset>
-            <fieldset>
                 <legend><b>Important</b>: SCBWI's Anti-Harassment Policy</legend>
                 <div>
                     SCBWI takes harassment very seriously. <a href="https://www.scbwi.org/anti-harassment-statement/" target="_blank">
@@ -145,21 +130,61 @@ const ScbwiFormInternal = (props: any) => {
                 </div>
                 <div className="pure-controls">
                     <label className="pure-checkbox">
-                        <Field type="checkbox" component="input" name="harassmentpolicy" /> I have read, and agree to,
+                        <Field type="checkbox" component="input" name="harassmentpolicy" onChange={event => props.checkAgree(event!.target.value)} /> I have read, and agree to,
                         the <a href="https://www.scbwi.org/anti-harassment-statement/" target="_blank">SCBWI Anti-Harassment Policy</a>
                     </label>
                 </div>
             </fieldset>
-            <fieldset>
-                <legend>Submit</legend>
-                <div className="pure-controls">
-                    <button className="pure-button pure-button-primary" type="submit" disabled={pristine || submitting}>Submit</button>
-                </div>
-            </fieldset>
+            {props.agreed &&
+                <>
+                    <fieldset>
+                        <legend>Coupon</legend>
+                        <PureControlGroup htmlFor="coupon" label="Coupon Code" message="If applicable" />
+                        <div className="pure-controls">
+                            <button className="pure-button pure-button-primary" type="button" onClick={props.submitCoupon}>Submit Coupon</button>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Totals</legend>
+                        <p>
+                            Please note that all registrations are <b>final</b>. There will be <b>no refunds given</b>.
+                        </p>
+                        <p>
+                            {props.loading ? 'Calculating totals...' : `Your subtotal is $${props.subtotal}.00`}<br />
+                            {props.loading ? 'Calculating totals...' : `Your total is $${props.total}.00`}
+                        </p>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Submit</legend>
+                        <div className="pure-controls">
+                            <PayPal env={props.env} disabled={false} commit={true} sandbox={props.sandbox} production={props.production} amount={props.total} />
+                        </div>
+                    </fieldset>
+                </>
+            }
         </form>
     );
 };
 
-export const ScbwiForm = reduxForm({
+const ScbwiFormMid: any = reduxForm({
     form: 'scbwi'
 })(ScbwiFormInternal);
+
+export const ScbwiForm: any = connect(
+    (state: any) => ({
+        initialValues: state.staticReducer.reg,
+        agreed: state.staticReducer.agreed,
+        total: state.staticReducer.total,
+        subtotal: state.staticReducer.subtotal,
+        loading: state.staticReducer.loading,
+        member: state.staticReducer.member,
+        env: state.staticReducer.env,
+        sandbox: state.staticReducer.sandbox,
+        production: state.staticReducer.production
+    }),
+    {
+        checkAgree,
+        setMember,
+        submitCoupon
+    }
+)(ScbwiFormMid);

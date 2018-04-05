@@ -13,6 +13,7 @@ using dias_events.Models;
 using dias_events.Services;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using dias.events.Data;
+using dias.events.Models;
 
 namespace dias_events
 {
@@ -42,6 +43,13 @@ namespace dias_events
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            services.Configure<Secrets>(options => {
+                options.sendgridkey = Configuration["sendgridkey"];
+                options.paypalsandbox = Configuration["paypalsandbox"];
+                options.paypalproduction = Configuration["paypalproduction"];
+                options.paypalenv = Configuration["paypalenv"];
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

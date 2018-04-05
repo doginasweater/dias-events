@@ -32,4 +32,14 @@ declare module Api {
         'Submit' |
         'Payment';
     
+    // Models\DTOs\TotalRequest.cs
+    export interface TotalRequest {
+        member: boolean;
+        intensives: string;
+        workshops: string;
+        manuscriptcritiques: number;
+        portfoliocritiques: number;
+        coupon: string;
+    }
+
 }

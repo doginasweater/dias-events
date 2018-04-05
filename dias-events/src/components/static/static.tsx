@@ -2,14 +2,34 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Grid } from 'components/common';
 import { ScbwiForm } from './form';
+import * as braintree from 'braintree-web';
+import { getToken } from './staticredux';
 
-class StaticInternal extends React.Component<any, any> {
+declare const paypal: any;
+
+interface IStaticState {
+    paypalenv: string;
+    braintreetoken: string;
+}
+
+interface ITokenResponse {
+    env: string;
+    token: string;
+}
+
+class StaticInternal extends React.Component<any, IStaticState> {
     constructor(props: any) {
         super(props);
     }
 
     public handleSubmit = (values: any) => {
         console.log('values', values);
+    }
+
+    public componentDidMount() {
+        const { dispatch } = this.props;
+
+        dispatch(getToken());
     }
 
     public render() {
@@ -46,4 +66,4 @@ class StaticInternal extends React.Component<any, any> {
     }
 }
 
-export const Static = connect((state: any) => ({ public: state.pubic }))(StaticInternal);
+export const Static = connect((state: any) => ({ static: state.staticReducer }))(StaticInternal);

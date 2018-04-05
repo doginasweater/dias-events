@@ -20,6 +20,7 @@ namespace dias.events.Data {
         public DbSet<Organisation> Organisations { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Static> StaticForms { get; set; }
         public DbSet<Submission> Submissions { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }
 
