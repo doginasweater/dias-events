@@ -64,7 +64,8 @@
         "object-literal-sort-keys": false,
         "jsx-curly-spacing": "always",
         "interface-over-type-literal": false,
-        "jsx-no-multiline-js": false
+        "jsx-no-multiline-js": false,
+        "interface-name": false
     },
     "rulesDirectory": []
 }
