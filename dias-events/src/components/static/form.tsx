@@ -76,6 +76,38 @@ const ScbwiFormInternal = (props: any) => {
         }
     ];
 
+    const SubmitFieldset = () => {
+        let retVal = (
+            <fieldset>
+                <legend>Click the PayPal button to pay and save your registration</legend>
+                <div className="pure-controls">
+                    <PayPal
+                        env={props.env}
+                        disabled={false}
+                        commit={true}
+                        sandbox={props.sandbox}
+                        production={props.production}
+                        amount={props.total}
+                    />
+                </div>
+            </fieldset>
+        );
+
+        if (props.total === 0 && props.total < props.subtotal) {
+            retVal = (
+                <fieldset>
+                    <legend>Your registration is free, so click here to submit.</legend>
+                    <div className="pure-controls">
+                        <button className="pure-button pure-button-primary" type="submit">
+                            Submit Registration
+                        </button>
+                    </div>
+                </fieldset>
+            );
+        }
+        return retVal;
+    };
+
     const { handleSubmit, pristine, reset, submitting } = props;
 
     return (
@@ -190,7 +222,7 @@ const ScbwiFormInternal = (props: any) => {
                                 type="button"
                                 onClick={props.submitCoupon}
                             >
-                                Submit Coupon
+                                Check coupon
                             </button>
                         </div>
                     </fieldset>
@@ -210,19 +242,7 @@ const ScbwiFormInternal = (props: any) => {
                                 : `Your total is $${props.total}.00`}
                         </p>
                     </fieldset>
-                    <fieldset>
-                        <legend>Submit</legend>
-                        <div className="pure-controls">
-                            <PayPal
-                                env={props.env}
-                                disabled={false}
-                                commit={true}
-                                sandbox={props.sandbox}
-                                production={props.production}
-                                amount={props.total}
-                            />
-                        </div>
-                    </fieldset>
+                    <SubmitFieldset />
                 </>
             )}
         </form>
