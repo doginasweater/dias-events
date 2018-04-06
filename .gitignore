@@ -260,6 +260,10 @@ paket-files/
 __pycache__/
 *.pyc
 
+# generated frontend
 **/wwwroot/**/*.js
 **/wwwroot/**/*.css
 **/wwwroot/**/*.map
+
+# sqlite databases
+*.db
