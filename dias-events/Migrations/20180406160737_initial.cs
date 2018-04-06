@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
@@ -14,7 +13,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     address1 = table.Column<string>(nullable: true),
                     address2 = table.Column<string>(nullable: true),
                     city = table.Column<string>(nullable: true),
@@ -39,7 +38,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
                     late = table.Column<decimal>(nullable: false),
@@ -53,11 +52,49 @@ namespace dias.events.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StaticForms",
+                columns: table => new
+                {
+                    id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    address1 = table.Column<string>(nullable: true),
+                    address2 = table.Column<string>(nullable: true),
+                    badgename = table.Column<string>(nullable: true),
+                    city = table.Column<string>(nullable: true),
+                    cleared = table.Column<DateTime>(nullable: true),
+                    country = table.Column<string>(nullable: true),
+                    coupon = table.Column<string>(nullable: true),
+                    created = table.Column<DateTime>(nullable: false),
+                    createdby = table.Column<string>(nullable: true),
+                    email = table.Column<string>(nullable: true),
+                    firstname = table.Column<string>(nullable: true),
+                    intensives = table.Column<string>(nullable: true),
+                    lastname = table.Column<string>(nullable: true),
+                    manuscriptcritiques = table.Column<int>(nullable: false),
+                    member = table.Column<bool>(nullable: false),
+                    modified = table.Column<DateTime>(nullable: false),
+                    modifiedby = table.Column<string>(nullable: true),
+                    paid = table.Column<DateTime>(nullable: true),
+                    phone = table.Column<string>(nullable: true),
+                    portfoliocritiques = table.Column<int>(nullable: false),
+                    postalcode = table.Column<string>(nullable: true),
+                    state = table.Column<string>(nullable: true),
+                    submitted = table.Column<DateTime>(nullable: false),
+                    subtotal = table.Column<decimal>(nullable: false),
+                    total = table.Column<decimal>(nullable: false),
+                    workshops = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StaticForms", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TimeSlots",
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
                     description = table.Column<string>(nullable: true),
@@ -77,7 +114,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     active = table.Column<bool>(nullable: false),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
@@ -104,7 +141,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     active = table.Column<bool>(nullable: false),
                     activedate = table.Column<DateTime>(nullable: false),
                     created = table.Column<DateTime>(nullable: false),
@@ -144,7 +181,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
                     defaultstate = table.Column<int>(nullable: false),
@@ -171,7 +208,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     cleared = table.Column<DateTime>(nullable: true),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
@@ -199,7 +236,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Submissionid = table.Column<long>(nullable: true),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
@@ -226,7 +263,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Couponid = table.Column<long>(nullable: true),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
@@ -288,7 +325,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
                     modified = table.Column<DateTime>(nullable: false),
@@ -322,7 +359,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     behaviour = table.Column<string>(nullable: true),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
@@ -346,7 +383,7 @@ namespace dias.events.Migrations
                 columns: table => new
                 {
                     id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     answerid = table.Column<long>(nullable: true),
                     created = table.Column<DateTime>(nullable: false),
                     createdby = table.Column<string>(nullable: true),
@@ -508,6 +545,9 @@ namespace dias.events.Migrations
 
             migrationBuilder.DropTable(
                 name: "Dependencies");
+
+            migrationBuilder.DropTable(
+                name: "StaticForms");
 
             migrationBuilder.DropTable(
                 name: "Choices");

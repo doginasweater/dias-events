@@ -9,7 +9,8 @@ import { PayPal } from './paypal';
 const ScbwiFormInternal = (props: any) => {
     const workshops = [
         {
-            label: 'Picture Book: Presented by Marla Frazee, Liz Garton Scanlon, Kait Feldmann, and Nancy Brennan',
+            label:
+                'Picture Book: Presented by Marla Frazee, Liz Garton Scanlon, Kait Feldmann, and Nancy Brennan',
             value: 'picture-book'
         },
         {
@@ -32,15 +33,18 @@ const ScbwiFormInternal = (props: any) => {
 
     const intensives = [
         {
-            label: 'Picture Book Intensive: Presented by Alexandra Penfold, Michael Stearns, and Liz Garton Scanlon (Max 20 attendees)',
+            label:
+                'Picture Book Intensive: Presented by Alexandra Penfold, Michael Stearns, and Liz Garton Scanlon (Max 20 attendees)',
             value: 'picture-book-intensive'
         },
         {
-            label: 'Novel Intensive: Presented by Lisa Yee, Kait Feldmann, and Janice Hardy (Max 25 attendees)',
+            label:
+                'Novel Intensive: Presented by Lisa Yee, Kait Feldmann, and Janice Hardy (Max 25 attendees)',
             value: 'novel-intensive'
         },
         {
-            label: 'Illustrator Intensive: Presented by Marla Frazee and Nancy Brennan (Max 25 attendees)',
+            label:
+                'Illustrator Intensive: Presented by Marla Frazee and Nancy Brennan (Max 25 attendees)',
             value: 'illustrator-intensive'
         }
     ];
@@ -78,14 +82,22 @@ const ScbwiFormInternal = (props: any) => {
         <form onSubmit={handleSubmit} className="pure-form pure-form-aligned">
             <fieldset>
                 <legend>Membership (Required)</legend>
-                <PureControlYesNo htmlFor="member" label="Are you a member?" handleChange={props.setMember} />
+                <PureControlYesNo
+                    htmlFor="member"
+                    label="Are you a member?"
+                    handleChange={props.setMember}
+                />
             </fieldset>
             <fieldset>
                 <legend>Basic Info (Required)</legend>
 
                 <PureControlGroup htmlFor="firstname" label="First Name" />
                 <PureControlGroup htmlFor="lastname" label="Last Name" />
-                <PureControlGroup htmlFor="badgename" label="Badge Name" message="If different from your regular name" />
+                <PureControlGroup
+                    htmlFor="badgename"
+                    label="Badge Name"
+                    message="If different from your regular name"
+                />
                 <PureControlGroup htmlFor="address1" label="Address 1" />
                 <PureControlGroup htmlFor="address2" label="Address 2" />
                 <PureControlGroup htmlFor="city" label="City" />
@@ -103,65 +115,116 @@ const ScbwiFormInternal = (props: any) => {
             </fieldset>
             <fieldset>
                 <legend>Workshops (Required, ${props.member ? '250' : '280'})</legend>
-                <PureRadioGroup groupName="workshops" groupLabel="Please select a workshop" values={workshops} />
+                <PureRadioGroup
+                    groupName="workshops"
+                    groupLabel="Please select a workshop"
+                    values={workshops}
+                />
             </fieldset>
             <fieldset>
                 <legend>Intensives (Optional, Members Only, $250)</legend>
-                <PureRadioGroup groupName="intensives" groupLabel="Select an intensive" values={intensives} />
+                <PureRadioGroup
+                    groupName="intensives"
+                    groupLabel="Select an intensive"
+                    values={intensives}
+                />
             </fieldset>
             <fieldset>
                 <legend>Manuscript Critiques (Optional, $60 each)</legend>
-                <PureRadioGroup groupLabel="Please select how many critiques you would like (if any)" groupName="manuscriptcritiques" values={critiques} />
+                <PureRadioGroup
+                    groupLabel="Please select how many critiques you would like (if any)"
+                    groupName="manuscriptcritiques"
+                    values={critiques}
+                />
             </fieldset>
             <fieldset>
                 <legend>Portfolio Critiques (Optional, $60 each)</legend>
-                <PureRadioGroup groupLabel="Please select how many critiques you would like (if any)" groupName="portfoliocritiques" values={critiques} />
+                <PureRadioGroup
+                    groupLabel="Please select how many critiques you would like (if any)"
+                    groupName="portfoliocritiques"
+                    values={critiques}
+                />
                 <p>
-                    Please remember to request your reviews from <a href="mailto:submissions@scbwiflorida.com">submissions@scbwiflorida.com</a> once you
-                    have completed your registration.
+                    Please remember to request your reviews from{' '}
+                    <a href="mailto:submissions@scbwiflorida.com">submissions@scbwiflorida.com</a>{' '}
+                    once you have completed your registration.
                 </p>
             </fieldset>
             <fieldset>
-                <legend><b>Important</b>: SCBWI's Anti-Harassment Policy</legend>
+                <legend>
+                    <b>Important</b>: SCBWI's Anti-Harassment Policy
+                </legend>
                 <div>
-                    SCBWI takes harassment very seriously. <a href="https://www.scbwi.org/anti-harassment-statement/" target="_blank">
+                    SCBWI takes harassment very seriously.{' '}
+                    <a href="https://www.scbwi.org/anti-harassment-statement/" target="_blank">
                         Please read the policy
                     </a>, as agreement is required to register.
                 </div>
                 <div className="pure-controls">
                     <label className="pure-checkbox">
-                        <Field type="checkbox" component="input" name="harassmentpolicy" onChange={event => props.checkAgree(event!.target.value)} /> I have read, and agree to,
-                        the <a href="https://www.scbwi.org/anti-harassment-statement/" target="_blank">SCBWI Anti-Harassment Policy</a>
+                        <Field
+                            type="checkbox"
+                            component="input"
+                            name="harassmentpolicy"
+                            onChange={event => props.checkAgree(event!.target.value)}
+                        />{' '}
+                        I have read, and agree to, the{' '}
+                        <a href="https://www.scbwi.org/anti-harassment-statement/" target="_blank">
+                            SCBWI Anti-Harassment Policy
+                        </a>
                     </label>
                 </div>
             </fieldset>
-            {props.agreed &&
+            {props.agreed && (
                 <>
                     <fieldset>
                         <legend>Coupon</legend>
-                        <PureControlGroup htmlFor="coupon" label="Coupon Code" message="If applicable" />
+                        <PureControlGroup
+                            htmlFor="coupon"
+                            label="Coupon Code"
+                            message="If applicable"
+                        />
                         <div className="pure-controls">
-                            <button className="pure-button pure-button-primary" type="button" onClick={props.submitCoupon}>Submit Coupon</button>
+                            <button
+                                className="pure-button pure-button-primary"
+                                type="button"
+                                onClick={props.submitCoupon}
+                            >
+                                Submit Coupon
+                            </button>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Totals</legend>
                         <p>
-                            Please note that all registrations are <b>final</b>. There will be <b>no refunds given</b>.
+                            Please note that all registrations are <b>final</b>. There will be{' '}
+                            <b>no refunds given</b>.
                         </p>
                         <p>
-                            {props.loading ? 'Calculating totals...' : `Your subtotal is $${props.subtotal}.00`}<br />
-                            {props.loading ? 'Calculating totals...' : `Your total is $${props.total}.00`}
+                            {props.loading
+                                ? 'Calculating totals...'
+                                : `Your subtotal is $${props.subtotal}.00`}
+                            <br />
+                            {props.loading
+                                ? 'Calculating totals...'
+                                : `Your total is $${props.total}.00`}
                         </p>
                     </fieldset>
                     <fieldset>
                         <legend>Submit</legend>
                         <div className="pure-controls">
-                            <PayPal env={props.env} disabled={false} commit={true} sandbox={props.sandbox} production={props.production} amount={props.total} />
+                            <PayPal
+                                env={props.env}
+                                disabled={false}
+                                commit={true}
+                                sandbox={props.sandbox}
+                                production={props.production}
+                                amount={props.total}
+                            />
                         </div>
                     </fieldset>
                 </>
-            }
+            )}
         </form>
     );
 };

@@ -53,6 +53,9 @@
   "scripts": {
     "prod": "webpack --env.production",
     "vendor": "webpack --config webpack.config.vendor.js",
-    "lint": "tslint -p . -c tslint.json"
+    "lint": "tslint -p . -c tslint.json",
+    "userdbupdate": "dotnet ef database update --context dias_events.Data.ApplicationDbContext",
+    "maindbupdate": "dotnet ef database update --context dias_events.Data.DiasContext",
+    "add-migration": "dotnet ef migrations add --context dias_events.Data.DiasContext"
   }
 }

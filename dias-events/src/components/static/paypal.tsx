@@ -1,5 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { store } from '../../store';
+import { submit } from 'redux-form';
 
 declare const paypal: any;
 
@@ -37,13 +39,25 @@ export class PayPal extends React.Component<IPaypalProps, {}> {
                 }
             });
 
-        const onAuthorize = (data: any, actions: any) =>
+        const onAuthorize = (data: any, actions: any) => {
             actions.payment.execute().then((response: any) => {
-                console.log('response', response);
+                if (response.state === 'approved') {
+                    store.dispatch(submit('scbwi'));
+                }
             });
+        };
 
         const PayPalButton = paypal.Button.driver('react', { React, ReactDOM });
 
-        return <PayPalButton client={client} payment={payment} commit={this.props.commit} onAuthorize={onAuthorize} disabled={this.props.disabled} env={this.props.env} />;
+        return (
+            <PayPalButton
+                client={client}
+                payment={payment}
+                commit={this.props.commit}
+                onAuthorize={onAuthorize}
+                disabled={this.props.disabled}
+                env={this.props.env}
+            />
+        );
     }
 }

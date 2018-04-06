@@ -32,6 +32,27 @@ declare module Api {
         'Submit' |
         'Payment';
     
+    // Models\DTOs\RegisterModel.cs
+    export interface RegisterModel {
+        member: string;
+        firstname: string;
+        lastname: string;
+        badgename: string;
+        address1: string;
+        address2: string;
+        city: string;
+        state: string;
+        postalcode: string;
+        country: string;
+        email: string;
+        phone: string;
+        workshops: string;
+        intensives: string;
+        manuscriptcritiques: number;
+        portfoliocritiques: number;
+        coupon: string;
+    }
+
     // Models\DTOs\TotalRequest.cs
     export interface TotalRequest {
         member: boolean;

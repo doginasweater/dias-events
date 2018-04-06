@@ -16,7 +16,9 @@
     <None Remove="src\components\public\index.ts" />
     <None Remove="src\components\static\form.tsx" />
     <None Remove="src\components\static\index.ts" />
+    <None Remove="src\components\static\paypal.tsx" />
     <None Remove="src\components\static\static.tsx" />
+    <None Remove="src\components\static\staticredux.ts" />
     <None Remove="src\index.tsx" />
     <None Remove="src\reducers\index.ts" />
     <None Remove="src\routes.tsx" />
@@ -24,7 +26,6 @@
     <None Remove="src\utilities\index.ts" />
     <None Remove="src\utilities\validators.ts" />
   </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Braintree" Version="4.0.0" />
@@ -52,7 +53,9 @@
     <TypeScriptCompile Include="src\components\public\index.ts" />
     <TypeScriptCompile Include="src\components\static\form.tsx" />
     <TypeScriptCompile Include="src\components\static\index.ts" />
+    <TypeScriptCompile Include="src\components\static\paypal.tsx" />
     <TypeScriptCompile Include="src\components\static\static.tsx" />
+    <TypeScriptCompile Include="src\components\static\staticredux.ts" />
     <TypeScriptCompile Include="src\index.tsx" />
     <TypeScriptCompile Include="src\reducers\index.ts" />
     <TypeScriptCompile Include="src\routes.tsx" />

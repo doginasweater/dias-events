@@ -30,10 +30,10 @@ namespace dias_events
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("users")));
+                options.UseSqlite(Configuration.GetConnectionString("users")));
 
             services.AddDbContext<DiasContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("main")));
+                options.UseSqlite(Configuration.GetConnectionString("main")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -44,7 +44,8 @@ namespace dias_events
 
             services.AddMvc();
 
-            services.Configure<Secrets>(options => {
+            services.Configure<Secrets>(options =>
+            {
                 options.sendgridkey = Configuration["sendgridkey"];
                 options.paypalsandbox = Configuration["paypalsandbox"];
                 options.paypalproduction = Configuration["paypalproduction"];
@@ -55,12 +56,21 @@ namespace dias_events
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var main = serviceScope.ServiceProvider.GetService<DiasContext>();
+                var users = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+                main.Database.Migrate();
+                users.Database.Migrate();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
                     HotModuleReplacement = true,
                     ReactHotModuleReplacement = true
                 });
@@ -74,10 +84,12 @@ namespace dias_events
 
             app.UseAuthentication();
 
-            app.UseMvc(routes => {
+            app.UseMvc(routes =>
+            {
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
-                    defaults: new {
+                    defaults: new
+                    {
                         controller = "Home",
                         action = "Index"
                     }

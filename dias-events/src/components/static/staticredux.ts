@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { submit } from 'redux-form';
 
-interface IRegistrationForm {
+export interface IRegistrationForm {
     member: 'yes' | 'no';
     firstname: string;
     lastname: string;
@@ -68,6 +69,8 @@ const SETMEMBER = 'SETMEMBER';
 const SETTOKEN = 'SETTOKEN';
 const SETTOTAL = 'SETTOTAL';
 const SUBMITCOUPON = 'SUBMITCOUPON';
+const SUBMIT = 'SUBMITTING';
+const SUBMITTED = 'SUBMITTED';
 
 const calc = (dispatch: any, store: any) => {
     const { values } = store().form.scbwi;
@@ -90,6 +93,13 @@ const calc = (dispatch: any, store: any) => {
             dispatch(setTotal(response.data.subtotal, response.data.total));
         });
 };
+
+export const handlePayment = (response: any) =>
+    (dispatch: any, store: any) => {
+        if (response.state === 'approved') {
+            dispatch(submit('scbwi'));
+        }
+    };
 
 export const checkAgree = (val: string) =>
     (dispatch: any, store: any) => {
@@ -119,6 +129,19 @@ export const submitCoupon = () =>
         }
     };
 
+export const submitForm = (form: IRegistrationForm) =>
+    (dispatch: any, store: any) => {
+        dispatch({ type: SUBMIT });
+
+        axios.post('/api/register', form)
+            .then(response => {
+                if (response.status === 200) {
+                    dispatch({ type: SUBMITTED });
+                    window.location.href = '/thanks';
+                }
+            });
+    };
+
 export const setTotal = (subtotal: number, total: number) => ({ type: SETTOTAL, subtotal, total });
 export const setToken = (env: string, sandbox: string, production: string) => ({ type: SETTOKEN, env, sandbox, production });
 export const getToken = () =>
@@ -131,7 +154,9 @@ export const getToken = () =>
                     return;
                 }
 
-                dispatch(setToken(response.data.env, response.data.sandbox, response.data.production));
+                const env = response.data.env ? response.data.env : 'sandbox';
+
+                dispatch(setToken(env, response.data.sandbox, response.data.production));
             });
     };
 
@@ -163,9 +188,15 @@ export const staticReducer = (state: IStatic = initial, action: any) => {
                 loading: false
             };
         case SUBMITCOUPON:
+        case SUBMIT:
             return {
                 ...state,
                 loading: true
+            };
+        case SUBMITTED:
+            return {
+                ...state,
+                loading: false
             };
         default:
             return state;

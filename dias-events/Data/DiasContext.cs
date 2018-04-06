@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using dias.events.Data.Platform;
 
-namespace dias.events.Data {
+namespace dias_events.Data {
     public class DiasContext : DbContext {
         public DiasContext(DbContextOptions<DiasContext> options) : base(options) { }
 

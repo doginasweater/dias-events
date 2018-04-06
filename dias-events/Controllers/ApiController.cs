@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Braintree;
+using dias.events.Data.Platform;
 using dias.events.Models;
+using dias_events.Data;
 using dias_events.Models.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +18,12 @@ namespace dias_events.Controllers {
     public class ApiController : Controller {
         private readonly ILogger _logger;
         private readonly Secrets _secrets;
+        private readonly DiasContext _db;
 
-        public ApiController(IOptions<Secrets> secrets, ILoggerFactory factory) {
+        public ApiController(IOptions<Secrets> secrets, ILoggerFactory factory, DiasContext db) {
             _logger = factory.CreateLogger("All");
             _secrets = secrets.Value;
+            _db = db;
         }
 
         [HttpPost("token")]
@@ -44,7 +48,55 @@ namespace dias_events.Controllers {
         }
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] TotalRequest request) => Json(true);
+        public IActionResult Register([FromBody] RegisterModel request) {
+            if (!ModelState.IsValid) {
+                return BadRequest();
+            }
+
+            var registration = new Static {
+                firstname = request.firstname,
+                lastname = request.lastname,
+                address1 = request.address1,
+                address2 = request.address2,
+                city = request.city,
+                state = request.state,
+                postalcode = request.postalcode,
+                country = request.country,
+                email = request.email,
+                phone = request.phone,
+                member = request.member == "yes",
+                portfoliocritiques = request.portfoliocritiques,
+                manuscriptcritiques = request.manuscriptcritiques,
+                workshops = request.workshops,
+                intensives = request.intensives,
+                submitted = DateTime.Now,
+                paid = DateTime.Now,
+                coupon = request.coupon,
+                badgename = request.badgename,
+                cleared = DateTime.Now,
+                created = DateTime.Now,
+                modified = DateTime.Now,
+                createdby = "v1",
+                modifiedby = "v1"
+            };
+
+            (var subtotal, var total) = Calculate(new TotalRequest {
+                member = registration.member,
+                coupon = registration.coupon,
+                intensives = registration.intensives,
+                manuscriptcritiques = registration.manuscriptcritiques,
+                portfoliocritiques = registration.portfoliocritiques,
+                workshops = registration.workshops
+            });
+
+            registration.subtotal = subtotal;
+            registration.total = total;
+
+            _db.StaticForms.Add(registration);
+            _db.SaveChanges();
+
+            return Json(true);
+        }
 
         private (decimal subtotal, decimal total) Calculate(TotalRequest request) {
             var subtotal = 0.0m;
