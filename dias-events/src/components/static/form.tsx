@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { PureControlGroup, PureControlYesNo, PureRadioGroup } from 'components/common/grid';
 import { required, mustBeMember } from 'utilities/validators';
-import { checkAgree, setMember, submitCoupon } from './staticredux';
+import { calcValidate, checkAgree, setMember, submitCoupon } from './staticredux';
 import { PayPal } from './paypal';
 
 const ScbwiFormInternal = (props: any) => {
@@ -32,6 +32,10 @@ const ScbwiFormInternal = (props: any) => {
     ];
 
     const intensives = [
+        {
+            label: 'None',
+            value: ''
+        },
         {
             label:
                 'Picture Book Intensive: Presented by Alexandra Penfold, Michael Stearns, and Liz Garton Scanlon (Max 20 attendees)',
@@ -108,7 +112,7 @@ const ScbwiFormInternal = (props: any) => {
         return retVal;
     };
 
-    const { handleSubmit, pristine, reset, submitting } = props;
+    const { dispatch, handleSubmit, pristine, reset, submitting } = props;
 
     return (
         <form onSubmit={handleSubmit} className="pure-form pure-form-aligned">
@@ -250,7 +254,9 @@ const ScbwiFormInternal = (props: any) => {
 };
 
 const ScbwiFormMid: any = reduxForm({
-    form: 'scbwi'
+    form: 'scbwi',
+    asyncValidate: calcValidate,
+    asyncBlurFields: [ 'member', 'workshops', 'intensives', 'manuscriptcritiques', 'portfoliocritiques' ]
 })(ScbwiFormInternal);
 
 export const ScbwiForm: any = connect(

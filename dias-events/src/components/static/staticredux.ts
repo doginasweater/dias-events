@@ -54,7 +54,7 @@ const initial: IStatic = {
         intensives: '',
         manuscriptcritiques: '0',
         portfoliocritiques: '0',
-        coupon: '',
+        coupon: ''
     },
     agreed: false,
     subtotal: 0.0,
@@ -74,6 +74,11 @@ const SUBMITTED = 'SUBMITTED';
 
 const calc = (dispatch: any, store: any) => {
     const { values } = store().form.scbwi;
+
+    calcValidate(values, dispatch);
+};
+
+export const calcValidate = (values: any, dispatch: any) => {
     const toSubmit = {
         member: values.member === 'yes',
         intensives: values.intensives,
@@ -83,82 +88,75 @@ const calc = (dispatch: any, store: any) => {
         coupon: values.coupon
     };
 
-    axios.post('/api/calctotal', toSubmit)
-        .then(response => {
-            if (response.status !== 200) {
-                console.error(`Error! ${response.statusText}`);
-                return;
-            }
+    return axios.post('/api/calctotal', toSubmit).then(response => {
+        if (response.status !== 200) {
+            console.error(`Error! ${response.statusText}`);
+            return;
+        }
 
-            dispatch(setTotal(response.data.subtotal, response.data.total));
-        });
+        dispatch(setTotal(response.data.subtotal, response.data.total));
+    });
 };
 
-export const handlePayment = (response: any) =>
-    (dispatch: any, store: any) => {
-        if (response.state === 'approved') {
-            dispatch(submit('scbwi'));
+export const handlePayment = (response: any) => (dispatch: any, store: any) => {
+    if (response.state === 'approved') {
+        dispatch(submit('scbwi'));
+    }
+};
+
+export const checkAgree = (val: string) => (dispatch: any, store: any) => {
+    const agree = val === '' || val === 'false';
+
+    dispatch({ type: CHECKAGREE, agree });
+
+    if (agree) {
+        calc(dispatch, store);
+    }
+};
+
+export const setMember = () => (dispatch: any, store: any) => {
+    const { member } = store().form.scbwi.values;
+
+    dispatch({ type: SETMEMBER, isMember: member !== 'yes' });
+};
+
+export const submitCoupon = () => (dispatch: any, store: any) => {
+    const { coupon } = store().form.scbwi.values;
+
+    dispatch({ type: SUBMITCOUPON });
+    calc(dispatch, store);
+};
+
+export const submitForm = (form: IRegistrationForm) => (dispatch: any, store: any) => {
+    dispatch({ type: SUBMIT });
+
+    axios.post('/api/register', form).then(response => {
+        if (response.status === 200) {
+            dispatch({ type: SUBMITTED });
+            window.location.href = '/thanks';
         }
-    };
-
-export const checkAgree = (val: string) =>
-    (dispatch: any, store: any) => {
-        const agree = val === '' || val === 'false';
-
-        dispatch({ type: CHECKAGREE, agree });
-
-        if (agree) {
-            calc(dispatch, store);
-        }
-    };
-
-export const setMember = () =>
-    (dispatch: any, store: any) => {
-        const { member } = store().form.scbwi.values;
-
-        dispatch({ type: SETMEMBER, isMember: member !== 'yes' });
-    };
-
-export const submitCoupon = () =>
-    (dispatch: any, store: any) => {
-        const { coupon } = store().form.scbwi.values;
-
-        if (coupon) {
-            dispatch({ type: SUBMITCOUPON });
-            calc(dispatch, store);
-        }
-    };
-
-export const submitForm = (form: IRegistrationForm) =>
-    (dispatch: any, store: any) => {
-        dispatch({ type: SUBMIT });
-
-        axios.post('/api/register', form)
-            .then(response => {
-                if (response.status === 200) {
-                    dispatch({ type: SUBMITTED });
-                    window.location.href = '/thanks';
-                }
-            });
-    };
+    });
+};
 
 export const setTotal = (subtotal: number, total: number) => ({ type: SETTOTAL, subtotal, total });
-export const setToken = (env: string, sandbox: string, production: string) => ({ type: SETTOKEN, env, sandbox, production });
-export const getToken = () =>
-    (dispatch: any) => {
-        axios
-            .post('/api/token')
-            .then((response) => {
-                if (response.status !== 200) {
-                    console.error(`Error! ${response.statusText}`);
-                    return;
-                }
+export const setToken = (env: string, sandbox: string, production: string) => ({
+    type: SETTOKEN,
+    env,
+    sandbox,
+    production
+});
+export const getToken = () => (dispatch: any) => {
+    axios.post('/api/token').then(response => {
+        if (response.status !== 200) {
+            console.error(`Error! ${response.statusText}`);
+            return;
+        }
 
-                const env = response.data.env ? response.data.env : 'sandbox';
+        const env = response.data.env ? response.data.env : 'sandbox';
 
-                dispatch(setToken(env, response.data.sandbox, response.data.production));
-            });
-    };
+        dispatch(setToken(env, response.data.sandbox, response.data.production));
+    });
+};
 
 export const staticReducer = (state: IStatic = initial, action: any) => {
     switch (action.type) {
