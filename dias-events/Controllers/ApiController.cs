@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Braintree;
 using dias.events.Data.Platform;
 using dias.events.Models;
 using dias_events.Data;

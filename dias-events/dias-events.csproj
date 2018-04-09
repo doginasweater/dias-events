@@ -4,28 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-dias_events-30490858-C93F-43DE-A5FE-788387157204</UserSecretsId>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
-    <RootNamespace>dias.events</RootNamespace>
+    <RootNamespace>dias_events</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="src\api\api.d.ts" />
-    <None Remove="src\components\admin\home.tsx" />
-    <None Remove="src\components\admin\index.ts" />
-    <None Remove="src\components\common\grid.tsx" />
-    <None Remove="src\components\common\index.ts" />
-    <None Remove="src\components\public\index.ts" />
-    <None Remove="src\components\static\form.tsx" />
-    <None Remove="src\components\static\index.ts" />
-    <None Remove="src\components\static\paypal.tsx" />
-    <None Remove="src\components\static\static.tsx" />
-    <None Remove="src\components\static\staticredux.ts" />
-    <None Remove="src\index.tsx" />
-    <None Remove="src\reducers\index.ts" />
-    <None Remove="src\routes.tsx" />
-    <None Remove="src\store.ts" />
-    <None Remove="src\utilities\index.ts" />
-    <None Remove="src\utilities\validators.ts" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Braintree" Version="4.0.0" />
@@ -42,26 +22,6 @@
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="src\api\api.d.ts" />
-    <TypeScriptCompile Include="src\components\admin\home.tsx" />
-    <TypeScriptCompile Include="src\components\admin\index.ts" />
-    <TypeScriptCompile Include="src\components\common\grid.tsx" />
-    <TypeScriptCompile Include="src\components\common\index.ts" />
-    <TypeScriptCompile Include="src\components\public\index.ts" />
-    <TypeScriptCompile Include="src\components\static\form.tsx" />
-    <TypeScriptCompile Include="src\components\static\index.ts" />
-    <TypeScriptCompile Include="src\components\static\paypal.tsx" />
-    <TypeScriptCompile Include="src\components\static\static.tsx" />
-    <TypeScriptCompile Include="src\components\static\staticredux.ts" />
-    <TypeScriptCompile Include="src\index.tsx" />
-    <TypeScriptCompile Include="src\reducers\index.ts" />
-    <TypeScriptCompile Include="src\routes.tsx" />
-    <TypeScriptCompile Include="src\store.ts" />
-    <TypeScriptCompile Include="src\utilities\index.ts" />
-    <TypeScriptCompile Include="src\utilities\validators.ts" />
   </ItemGroup>
 
 </Project>

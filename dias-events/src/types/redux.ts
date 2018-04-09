@@ -16,3 +16,12 @@ export interface ReducerMap<TState> {
 }
 
 export type Dispatch<TActionType> = (action: IAction<TActionType>) => void;
+
+export interface IReduxProps {
+    children?: any;
+    dispatch: any;
+    history: any;
+    match: any;
+    staticContext: any;
+    location: any;
+}
