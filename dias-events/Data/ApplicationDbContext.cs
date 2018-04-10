@@ -15,6 +15,7 @@ namespace dias_events.Data
         {
         }
 
+        // comment
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
