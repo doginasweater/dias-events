@@ -30,10 +30,10 @@ namespace dias_events
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("users")));
+                options.UseNpgsql(Configuration.GetConnectionString("users")));
 
             services.AddDbContext<DiasContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("main")));
+                options.UseNpgsql(Configuration.GetConnectionString("main")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
