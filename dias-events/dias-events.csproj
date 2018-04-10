@@ -5,6 +5,7 @@
     <UserSecretsId>aspnet-dias_events-30490858-C93F-43DE-A5FE-788387157204</UserSecretsId>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
     <RootNamespace>dias_events</RootNamespace>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
 
   <ItemGroup>
