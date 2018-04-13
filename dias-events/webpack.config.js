@@ -13,7 +13,8 @@ module.exports = (env) => {
 
     const shared = () => ({
         entry: {
-            main: ['./src/index.tsx']
+            main: ['./src/index.tsx'],
+            admin: ['./src/admin.tsx']
         },
         module: {
             rules: [
@@ -29,7 +30,7 @@ module.exports = (env) => {
             ]
         },
         output: {
-            filename: 'main.js',
+            filename: '[name].js',
             path: path.resolve(__dirname, 'wwwroot', 'js'),
             publicPath: '/js/',
         },
