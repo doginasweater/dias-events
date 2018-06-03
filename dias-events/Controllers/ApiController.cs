@@ -22,7 +22,8 @@ namespace dias_events.Controllers {
         public ApiController(IOptions<Secrets> secrets, ILoggerFactory factory, DiasContext db) {
             _logger = factory.CreateLogger("All");
             _secrets = secrets.Value;
-            _db = db;
+            _db = db; 
+            _db.user = "v1";
         }
 
         [HttpPost("token")]
@@ -74,9 +75,7 @@ namespace dias_events.Controllers {
                 badgename = request.badgename,
                 cleared = DateTime.Now,
                 created = DateTime.Now,
-                modified = DateTime.Now,
-                createdby = "v1",
-                modifiedby = "v1"
+                modified = DateTime.Now
             };
 
             (var subtotal, var total) = Calculate(new TotalRequest {
