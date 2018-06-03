@@ -49,6 +49,7 @@ class StaticInternal extends React.Component<any, {}> {
                     </Grid.PureU14>
                     <Grid.PureU34>
                         <h2>Register</h2>
+			<p style={{color: 'red'}}>Late registration prices are in effect</p>
                         <ScbwiForm onSubmit={this.handleSubmit} />
                     </Grid.PureU34>
                 </Grid.PureU1>

@@ -10,7 +10,7 @@ const ScbwiFormInternal = (props: any) => {
     const workshops = [
         {
             label:
-                'Picture Book: Presented by Marla Frazee, Liz Garton Scanlon, Kait Feldmann, and Nancy Brennan',
+                'Picture Book: Presented by Floyd Cooper, Liz Garton Scanlon, Kait Feldmann, and Nancy Brennan',
             value: 'picture-book'
         },
         {
@@ -38,17 +38,12 @@ const ScbwiFormInternal = (props: any) => {
         },
         {
             label:
-                'Picture Book Intensive: Presented by Alexandra Penfold, Michael Stearns, and Liz Garton Scanlon (Max 20 attendees)',
-            value: 'picture-book-intensive'
-        },
-        {
-            label:
                 'Novel Intensive: Presented by Lisa Yee, Kait Feldmann, and Janice Hardy (Max 25 attendees)',
             value: 'novel-intensive'
         },
         {
             label:
-                'Illustrator Intensive: Presented by Marla Frazee and Nancy Brennan (Max 25 attendees)',
+                'Illustrator Intensive: Presented by Floyd Cooper and Nancy Brennan (Max 25 attendees)',
             value: 'illustrator-intensive'
         }
     ];
@@ -150,7 +145,7 @@ const ScbwiFormInternal = (props: any) => {
                 <PureControlGroup htmlFor="phone" label="Phone" />
             </fieldset>
             <fieldset>
-                <legend>Workshops (Required, ${props.member ? '250' : '280'})</legend>
+                <legend>Workshops (Required, ${props.member ? '275' : '305'})</legend>
                 <PureRadioGroup
                     groupName="workshops"
                     groupLabel="Please select a workshop"
@@ -158,33 +153,12 @@ const ScbwiFormInternal = (props: any) => {
                 />
             </fieldset>
             <fieldset>
-                <legend>Intensives (Optional, Members Only, $250)</legend>
+                <legend>Intensives (Optional, Members Only, $275)</legend>
                 <PureRadioGroup
                     groupName="intensives"
                     groupLabel="Select an intensive"
                     values={intensives}
                 />
-            </fieldset>
-            <fieldset>
-                <legend>Manuscript Critiques (Optional, $60 each)</legend>
-                <PureRadioGroup
-                    groupLabel="Please select how many critiques you would like (if any)"
-                    groupName="manuscriptcritiques"
-                    values={critiques}
-                />
-            </fieldset>
-            <fieldset>
-                <legend>Portfolio Critiques (Optional, $60 each)</legend>
-                <PureRadioGroup
-                    groupLabel="Please select how many critiques you would like (if any)"
-                    groupName="portfoliocritiques"
-                    values={critiques}
-                />
-                <p>
-                    Please remember to request your reviews from{' '}
-                    <a href="mailto:submissions@scbwiflorida.com">submissions@scbwiflorida.com</a>{' '}
-                    once you have completed your registration.
-                </p>
             </fieldset>
             <fieldset>
                 <legend>

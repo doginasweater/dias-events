@@ -1,5 +1,5 @@
 declare module Api {
-    // Models\DTOs\AnswerType.cs
+    // Models/DTOs/AnswerType.cs
     export type AnswerType =
         'MultiLineText' |
         'SingleLineText' |
@@ -8,20 +8,20 @@ declare module Api {
         'Checkbox' |
         'TimeSlotChoice';
     
-    // Models\DTOs\CouponType.cs
+    // Models/DTOs/CouponType.cs
     export type CouponType =
         'FlatReduction' |
         'PercentageReduction' |
         'ItemFlatReduction' |
         'ItemPercentageReduction';
     
-    // Models\DTOs\EntryState.cs
+    // Models/DTOs/EntryState.cs
     export type EntryState =
         'Closed' |
         'Open' |
         'Hidden';
     
-    // Models\DTOs\EntryType.cs
+    // Models/DTOs/EntryType.cs
     export type EntryType =
         'Header' |
         'Section' |
@@ -32,7 +32,7 @@ declare module Api {
         'Submit' |
         'Payment';
     
-    // Models\DTOs\RegisterModel.cs
+    // Models/DTOs/RegisterModel.cs
     export interface RegisterModel {
         member: string;
         firstname: string;
@@ -53,7 +53,7 @@ declare module Api {
         coupon: string;
     }
 
-    // Models\DTOs\TotalRequest.cs
+    // Models/DTOs/TotalRequest.cs
     export interface TotalRequest {
         member: boolean;
         intensives: string;

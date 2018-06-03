@@ -101,11 +101,11 @@ namespace dias_events.Controllers {
             var subtotal = 0.0m;
 
             if (!string.IsNullOrEmpty(request.workshops)) {
-                subtotal += request.member ? 250 : 280;
+                subtotal += request.member ? 275 : 305;
             }
 
             if (!string.IsNullOrEmpty(request.intensives) && request.member) {
-                subtotal += 250;
+                subtotal += 275;
             }
 
             if (request.manuscriptcritiques > 0) {
