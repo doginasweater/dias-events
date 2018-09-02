@@ -10,11 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace dias.events.Migrations
+namespace dias_events.Migrations
 {
     [DbContext(typeof(DiasContext))]
-    [Migration("20180406160737_initial")]
-    partial class initial
+    [Migration("20180902184839_bootcamp")]
+    partial class bootcamp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,62 @@ namespace dias.events.Migrations
                     b.HasIndex("questionid");
 
                     b.ToTable("Answers");
+                });
+
+            modelBuilder.Entity("dias.events.Data.Platform.Bootcamp", b =>
+                {
+                    b.Property<long>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("address1");
+
+                    b.Property<string>("address2");
+
+                    b.Property<string>("badgename");
+
+                    b.Property<string>("camps");
+
+                    b.Property<string>("city");
+
+                    b.Property<DateTime?>("cleared");
+
+                    b.Property<string>("country");
+
+                    b.Property<string>("coupon");
+
+                    b.Property<DateTime>("created");
+
+                    b.Property<string>("createdby");
+
+                    b.Property<string>("email");
+
+                    b.Property<string>("firstname");
+
+                    b.Property<string>("lastname");
+
+                    b.Property<bool>("member");
+
+                    b.Property<DateTime>("modified");
+
+                    b.Property<string>("modifiedby");
+
+                    b.Property<DateTime?>("paid");
+
+                    b.Property<string>("phone");
+
+                    b.Property<string>("postalcode");
+
+                    b.Property<string>("state");
+
+                    b.Property<DateTime>("submitted");
+
+                    b.Property<decimal>("subtotal");
+
+                    b.Property<decimal>("total");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Bootcamps");
                 });
 
             modelBuilder.Entity("dias.events.Data.Platform.Choice", b =>

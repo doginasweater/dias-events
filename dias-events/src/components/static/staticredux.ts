@@ -14,10 +14,7 @@ export interface IRegistrationForm {
     country: string;
     email: string;
     phone: string;
-    workshops: string;
-    intensives: string;
-    manuscriptcritiques: string;
-    portfoliocritiques: string;
+    camps: string;
     coupon: string;
 }
 
@@ -50,10 +47,7 @@ const initial: IStatic = {
         country: 'US',
         email: '',
         phone: '',
-        workshops: '',
-        intensives: '',
-        manuscriptcritiques: '0',
-        portfoliocritiques: '0',
+        camps: '',
         coupon: ''
     },
     agreed: false,
@@ -81,10 +75,7 @@ const calc = (dispatch: any, store: any) => {
 export const calcValidate = (values: any, dispatch: any) => {
     const toSubmit = {
         member: values.member === 'yes',
-        intensives: values.intensives,
-        workshops: values.workshops,
-        manuscriptcritiques: Number(values.manuscriptcritiques),
-        portfoliocritiques: Number(values.portfoliocritiques),
+        camps: values.camps,
         coupon: values.coupon
     };
 

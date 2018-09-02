@@ -1,6 +1,13 @@
-namespace dias_events.Models.DTOs {
-    public class RegisterModel {
-        public string member { get; set; }
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace dias.events.Data.Platform
+{
+    public class Bootcamp : Common
+    {
+        public bool member { get; set; }
 
         public string firstname { get; set; }
         public string lastname { get; set; }
@@ -15,7 +22,14 @@ namespace dias_events.Models.DTOs {
         public string phone { get; set; }
 
         public string camps { get; set; }
-
+        
         public string coupon { get; set; }
+
+        public decimal subtotal { get; set; }
+        public decimal total { get; set; }
+
+        public DateTime submitted { get; set; }
+        public DateTime? paid { get; set; }
+        public DateTime? cleared { get; set; }
     }
 }

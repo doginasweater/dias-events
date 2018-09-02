@@ -2,12 +2,47 @@
 using System;
 using System.Collections.Generic;
 
-namespace dias.events.Migrations
+namespace dias_events.Migrations
 {
-    public partial class initial : Migration
+    public partial class bootcamp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Bootcamps",
+                columns: table => new
+                {
+                    id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    address1 = table.Column<string>(nullable: true),
+                    address2 = table.Column<string>(nullable: true),
+                    badgename = table.Column<string>(nullable: true),
+                    camps = table.Column<string>(nullable: true),
+                    city = table.Column<string>(nullable: true),
+                    cleared = table.Column<DateTime>(nullable: true),
+                    country = table.Column<string>(nullable: true),
+                    coupon = table.Column<string>(nullable: true),
+                    created = table.Column<DateTime>(nullable: false),
+                    createdby = table.Column<string>(nullable: true),
+                    email = table.Column<string>(nullable: true),
+                    firstname = table.Column<string>(nullable: true),
+                    lastname = table.Column<string>(nullable: true),
+                    member = table.Column<bool>(nullable: false),
+                    modified = table.Column<DateTime>(nullable: false),
+                    modifiedby = table.Column<string>(nullable: true),
+                    paid = table.Column<DateTime>(nullable: true),
+                    phone = table.Column<string>(nullable: true),
+                    postalcode = table.Column<string>(nullable: true),
+                    state = table.Column<string>(nullable: true),
+                    submitted = table.Column<DateTime>(nullable: false),
+                    subtotal = table.Column<decimal>(nullable: false),
+                    total = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bootcamps", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
@@ -540,6 +575,9 @@ namespace dias.events.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Bootcamps");
+
             migrationBuilder.DropTable(
                 name: "ChoiceAnswers");
 

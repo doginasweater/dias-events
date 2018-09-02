@@ -28,7 +28,7 @@ class StaticInternal extends React.Component<any, {}> {
             <Grid.PureG>
                 <Grid.PureU1>
                     <a href="/" className="unstyled-link">
-                        <h1>SCBWI June 2018</h1>
+                        <h1>SCBWI September Bootcamps</h1>
                     </a>
                 </Grid.PureU1>
                 <Grid.PureU1>
@@ -49,7 +49,9 @@ class StaticInternal extends React.Component<any, {}> {
                     </Grid.PureU14>
                     <Grid.PureU34>
                         <h2>Register</h2>
-			<p style={{color: 'red'}}>Late registration prices are in effect</p>
+                        <p>
+                            All Boot Camps on September 29 from 10am - 4pm.
+                        </p>
                         <ScbwiForm onSubmit={this.handleSubmit} />
                     </Grid.PureU34>
                 </Grid.PureU1>

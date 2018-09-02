@@ -10,6 +10,7 @@ namespace dias_events.Data {
         public DiasContext(DbContextOptions<DiasContext> options) : base(options) { }
 
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<Bootcamp> Bootcamps { get; set; }
         public DbSet<Choice> Choices { get; set; }
         public DbSet<ChoiceAnswer> ChoiceAnswers { get; set; }
         public DbSet<Coupon> Coupons { get; set; }

@@ -60,7 +60,7 @@ namespace dias_events
             {
                 var main = serviceScope.ServiceProvider.GetService<DiasContext>();
                 var users = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
-                main.Database.Migrate();
+                //main.Database.Migrate();
                 users.Database.Migrate();
             }
 

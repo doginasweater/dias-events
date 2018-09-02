@@ -53,7 +53,7 @@ namespace dias_events.Controllers {
                 return BadRequest();
             }
 
-            var registration = new Static {
+            var registration = new Bootcamp {
                 firstname = request.firstname,
                 lastname = request.lastname,
                 address1 = request.address1,
@@ -65,10 +65,7 @@ namespace dias_events.Controllers {
                 email = request.email,
                 phone = request.phone,
                 member = request.member == "yes",
-                portfoliocritiques = request.portfoliocritiques,
-                manuscriptcritiques = request.manuscriptcritiques,
-                workshops = request.workshops,
-                intensives = request.intensives,
+                camps = request.camps,
                 submitted = DateTime.Now,
                 paid = DateTime.Now,
                 coupon = request.coupon,
@@ -81,16 +78,13 @@ namespace dias_events.Controllers {
             (var subtotal, var total) = Calculate(new TotalRequest {
                 member = registration.member,
                 coupon = registration.coupon,
-                intensives = registration.intensives,
-                manuscriptcritiques = registration.manuscriptcritiques,
-                portfoliocritiques = registration.portfoliocritiques,
-                workshops = registration.workshops
+                camps = registration.camps
             });
 
             registration.subtotal = subtotal;
             registration.total = total;
 
-            _db.StaticForms.Add(registration);
+            _db.Bootcamps.Add(registration);
             _db.SaveChanges();
 
             return Json(true);
@@ -99,29 +93,17 @@ namespace dias_events.Controllers {
         private (decimal subtotal, decimal total) Calculate(TotalRequest request) {
             var subtotal = 0.0m;
 
-            if (!string.IsNullOrEmpty(request.workshops)) {
-                subtotal += request.member ? 275 : 305;
-            }
-
-            if (!string.IsNullOrEmpty(request.intensives) && request.member) {
-                subtotal += 275;
-            }
-
-            if (request.manuscriptcritiques > 0) {
-                subtotal += (request.manuscriptcritiques * 60);
-            }
-
-            if (request.portfoliocritiques > 0) {
-                subtotal += (request.portfoliocritiques * 60);
+            if (!string.IsNullOrEmpty(request.camps)) {
+                subtotal += request.member ? 75 : 100;
             }
 
             var total = subtotal;
 
-            if (request.coupon.Trim().ToLower() == "make it free") {
+            if (request.coupon.Trim().ToLower() == "price is mia") {
                 total = 0;
             }
 
-            if (request.coupon.Trim().ToLower() == "slice in twain") {
+            if (request.coupon.Trim().ToLower() == "drop and give me 50") {
                 total = subtotal / 2;
             }
 
